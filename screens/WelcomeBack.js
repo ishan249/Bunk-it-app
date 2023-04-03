@@ -52,7 +52,7 @@ export default function WelcomeBack() {
             style={{ width: 186, height: 160 }}
           />
         </View>
-        <Text style={styles.title}>Bunk It</Text>
+        <Text style={styles.title}>Bunk it</Text>
       </View>
     )
   );

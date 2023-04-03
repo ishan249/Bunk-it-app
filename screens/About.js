@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, StyleSheet, Linking } from "react-native";
+import { View, Text, StyleSheet, Linking, ScrollView } from "react-native";
 import themeContext from "../config/themeContext";
 
 import * as Font from "expo-font";
@@ -29,6 +29,7 @@ export default function About() {
     return null;
   }
   return (
+    <ScrollView>
     <View style={styles.container}>
       <View style={styles.infoContainer}>
         <Text style={[styles.heading,{color:theme?"#fff":"#000"}]}>Hello User.</Text>
@@ -69,6 +70,7 @@ export default function About() {
         </View>
       </View>
     </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({

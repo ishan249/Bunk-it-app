@@ -5,12 +5,15 @@ import {
   View,
   TouchableOpacity,
   Modal,
+  Dimensions
 } from "react-native";
 import React, { useState, useEffect ,useContext} from "react";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import themeContext from "../config/themeContext";
 import * as Font from "expo-font";
+const windowWidth = Dimensions.get("window").width;
+const windowFontSize = windowWidth / 20;
 export default function Home() {
   const [presentSlot, setPresentSlot] = useState("");
   const [totalSlot, setTotalSlot] = useState("");
@@ -43,23 +46,20 @@ export default function Home() {
   }
 
   const handleSubmit = () => {
-    if(totalSlot<presentSlot){
-      setSlotsError("Total slot should be more than or equal to present slot");
-    }
-    else{
+    const attendance_calculation = (presentSlot / totalSlot) * 100;
+    if(parseInt(totalSlot)>=parseInt(presentSlot)){
       setSlotsError("");
-      const attendance_calculation = (presentSlot / totalSlot) * 100;
       if (attendance_calculation < requiredAttendance) {
         const res =
-          (requiredAttendance * totalSlot - presentSlot * 100) /
+          ((requiredAttendance * totalSlot)- (presentSlot * 100)) /
           (100 - requiredAttendance);
         setResult(`${Math.trunc(res)}`);
         setOutput1("Hey User, You need to attend");
         setOutput2("Lectures to meet the criteria 😢😢");
         setModalVisible(true);
         setBunk(false);
-      } else if (attendance_calculation >= requiredAttendance) {
-        const res = (presentSlot * 100) / requiredAttendance - totalSlot;
+      } else if (attendance_calculation > requiredAttendance) {
+        const res = ((presentSlot * 100) / requiredAttendance) - totalSlot;
         setResult(`${Math.trunc(res)}`);
         setModalVisible(true);
         setOutput1("Hey user 🎉 You have");
@@ -67,8 +67,9 @@ export default function Home() {
         setBunk(true);
       }
     }
-    
-    // navigation.navigate("ResultScreen",{ result: result });
+    else{
+      setSlotsError("Total slot should be more than or equal to present slot");
+    }
   };
 
   const handlePresentChange = (value) => {
@@ -146,7 +147,6 @@ export default function Home() {
         style={[{
           backgroundColor:theme?"#AFAFAF":"#D8D8D8",
 
-
         },styles.input]}
         onChangeText={handleRequiredAttendanceChange}
         value={requiredAttendance}
@@ -200,10 +200,8 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     marginTop: 10,
     marginLeft: 20,
-    // justifyContent: "center",
   },
   label: {
     fontSize: 20,
@@ -264,25 +262,21 @@ const styles = StyleSheet.create({
     margin: 2,
     padding: 10,
     borderRadius: 10,
-    // height: 240,
   },
   button: {
     backgroundColor: "#DA2E32",
-    padding: 10,
     borderRadius: 10,
-    height: 46,
-    textAlign: "center",
-    justifyContent: "center",
+    height: 2.4 * windowFontSize,
     alignItems: "center",
-    width: 130,
+    paddingVertical: 0.02 * windowWidth,
+    paddingHorizontal: 0.04 * windowWidth,
+    width:7.4 * windowFontSize,
   },
   buttonText: {
     color: "#fff",
-    paddingTop: 0,
-    alignContent: "center",
-    alignSelf: "center",
+    textAlign:"center",
+    fontSize: windowFontSize,
     fontFamily: "Poppins-SemiBold",
-    fontSize: 20,
   },
   closeButton: {
     backgroundColor: "#4B4B4B",
