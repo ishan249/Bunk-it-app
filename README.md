@@ -17,7 +17,7 @@ npm start
 ```
 
 ## Download APK
-To download APK of this app. [Click Here](https://appsenjoy.com/en/Tjt7ZvHnDdcj6BT/file)
+To download APK of this app. [Click Here](https://drive.google.com/file/d/1xb-Af64qD4JfjYeZ01IBor2lX0weT-40/view?usp=sharing)
 
 ## Usage
 
