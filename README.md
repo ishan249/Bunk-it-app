@@ -17,7 +17,7 @@ npm start
 ```
 
 ## Download APK
-To download APK of this app. [Click Here](https://drive.google.com/file/d/1xb-Af64qD4JfjYeZ01IBor2lX0weT-40/view?usp=sharing)
+To download APK of this app. [Click Here](https://drive.google.com/drive/folders/1ewuTwsh-_xOZvl8mjxPqbjvZ5lKAvtL5?usp=sharing)
 
 ## Usage
 
